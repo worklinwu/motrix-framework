@@ -1,0 +1,5 @@
+{
+  "cmdctrl-q": "application:quit",
+  "cmdctrl-o": "application:open-file",
+  "cmdctrl-,": "application:preferences"
+}

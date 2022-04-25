@@ -1,0 +1,50 @@
+/* App
+-------------------------- */
+$--app-background: transparent !default;
+$--titlebar-actions-color: #1f1f1f !default;
+$--titlebar-actions-active-background: #eee !default;
+$--titlebar-close-active-color: #fff !default;
+$--titlebar-close-active-background: #fd0007 !default;
+$--app-logo-color: #4D515A !default;
+$--app-version-color: $--color-text-regular !default;
+$--app-engine-title-color: $--color-text-regular !default;
+$--app-engine-info-color: $--color-text-secondary !default;
+$--app-copyright-color: $--color-text-regular !default;
+
+/* Aside
+-------------------------- */
+$--aside-background: rgba(0, 0, 0, 0.8) !default;
+$--aside-text-color: #fff !default;
+
+/* SubNav
+-------------------------- */
+$--subnav-background: #F4F5F7 !default;
+$--subnav-title-color: $--color-text-primary !default;
+$--subnav-action-color: #4D515A !default;
+$--subnav-text-color: #4D515A !default;
+$--subnav-active-text-color: $--color-primary !default;
+$--subnav-active-background: #EAECF0 !default;
+$--subnav-border-color: #ccc !default;
+
+/* Main
+-------------------------- */
+$--main-background: $--color-white !default;
+
+/* Panel
+-------------------------- */
+$--panel-background: $--color-white !default;
+$--panel-title-color: $--color-text-primary !default;
+$--panel-border-color: rgba(0, 0, 0, 0.1) !default;
+
+/* Form Actions
+-------------------------- */
+$--form-actions-background: $--color-white !default;
+
+/* Preference
+-------------------------- */
+$--preference-form-text-color: #4c4c4c;
+
+/* Element UI
+-------------------------- */
+$--dialog-background: #fff !default;
+$--table-border-color: #ebeef5 !default;
