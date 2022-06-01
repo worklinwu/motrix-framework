@@ -23,5 +23,6 @@ if (process.env.NODE_ENV !== 'development') {
 if (is.windows()) {
   app.setAppUserModelId(appId)
 }
+app.commandLine.appendSwitch('enable-transparent-visuals')
 
 global.launcher = new Launcher()

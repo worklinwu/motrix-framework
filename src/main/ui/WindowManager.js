@@ -5,6 +5,7 @@ import is from 'electron-is'
 import pageConfig from '../configs/page'
 import logger from '../core/Logger'
 import { debounce } from 'lodash'
+import glasstron from 'glasstron'
 
 const defaultBrowserOptions = {
   titleBarStyle: 'hiddenInset',
@@ -73,6 +74,7 @@ export default class WindowManager extends EventEmitter {
 
   openWindow (page, options = {}) {
     const pageOptions = this.getPageOptions(page)
+    const BrowserWindowTarget = pageOptions.glasstron ? glasstron.BrowserWindow : BrowserWindow
     const { hidden } = options
     const autoHideWindow = this.userConfig['auto-hide-window']
     let window = this.windows[page] || null
@@ -84,7 +86,7 @@ export default class WindowManager extends EventEmitter {
     }
 
     // 打开窗口的关键代码
-    window = new BrowserWindow({
+    window = new BrowserWindowTarget({
       ...defaultBrowserOptions,
       ...pageOptions.attrs,
       webPreferences: {
