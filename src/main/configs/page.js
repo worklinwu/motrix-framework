@@ -8,10 +8,8 @@ export default {
       height: 768,
       minWidth: 478,
       minHeight: 420,
-      vibrancy: 'light',
-      visualEffectState: 'active',
-      transparent: true,
-      frame: false
+      // backgroundColor: '#FFFFFF',
+      transparent: !is.windows()
     },
     bindCloseToHide: true,
     url: is.dev() ? 'http://localhost:9080' : require('path').join('file://', __dirname, '/index.html')

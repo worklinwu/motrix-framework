@@ -486,6 +486,10 @@ export default class Application extends EventEmitter {
       this.openExternal(url)
     })
 
+    this.on('application:show-page', (pageName, options) => {
+      this.showPage(pageName, options)
+    })
+
     this.on('help:official-website', () => {
       const url = 'https://motrix.app/'
       this.openExternal(url)

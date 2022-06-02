@@ -13,7 +13,7 @@ const defaultBrowserOptions = {
   height: 768,
   vibrancy: 'light',
   visualEffectState: 'active',
-  // backgroundColor: is.macOS() ? '#00000000' : '#FFF',
+  backgroundColor: is.macOS() ? '#00000000' : '#FFF',
   webPreferences: {
     nodeIntegration: true
   }

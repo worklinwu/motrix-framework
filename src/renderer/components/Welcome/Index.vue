@@ -1,8 +1,9 @@
 <template>
-  <el-container
-    class="main panel"
-  >
-    Hello world!
+  <el-container>
+    <el-main>
+      Hello world!
+      <el-button @click="handleShowAboutPage">打开 about 窗体</el-button>
+    </el-main>
   </el-container>
 </template>
 
@@ -23,6 +24,9 @@
     methods: {
       handleWelcomeDemo () {
         logger.info('hello world!')
+      },
+      handleShowAboutPage () {
+        this.$electron.ipcRenderer.send('command', 'application:show-page', 'about')
       }
     },
     created () {
