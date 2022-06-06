@@ -1,6 +1,9 @@
+import * as os from 'os'
 import { join } from 'path'
 import { EventEmitter } from 'events'
-import { app, shell, screen, BrowserWindow } from 'electron'
+import { app, shell, screen } from 'electron'
+import * as remoteMain from '@electron/remote/main'
+import { BrowserWindow } from 'electron-acrylic-window'
 import is from 'electron-is'
 import pageConfig from '../configs/page'
 import logger from '../core/Logger'
@@ -15,6 +18,8 @@ const defaultBrowserOptions = {
   visualEffectState: 'active',
   backgroundColor: is.macOS() ? '#00000000' : '#FFF',
   webPreferences: {
+    enableRemoteModule: true,
+    contextIsolation: false,
     nodeIntegration: true
   }
 }
@@ -71,6 +76,14 @@ export default class WindowManager extends EventEmitter {
     return result
   }
 
+  isVibrancySupported () {
+    // Windows 10 or greater
+    return (
+      process.platform === 'win32' &&
+      parseInt(os.release().split('.')[0]) >= 10
+    )
+  }
+
   openWindow (page, options = {}) {
     const pageOptions = this.getPageOptions(page)
     const { hidden } = options
@@ -83,10 +96,23 @@ export default class WindowManager extends EventEmitter {
       return window
     }
 
+    let vibrancy = pageOptions.attrs?.vibrancy || 'light'
+
+    if (this.isVibrancySupported()) {
+      vibrancy = {
+        theme: '#ffffff',
+        effect: 'acrylic',
+        useCustomWindowRefreshMethod: true,
+        disableOnBlur: true,
+        debug: false
+      }
+    }
+
     // 打开窗口的关键代码
     window = new BrowserWindow({
       ...defaultBrowserOptions,
       ...pageOptions.attrs,
+      vibrancy,
       webPreferences: {
         enableRemoteModule: true,
         contextIsolation: false,
@@ -101,6 +127,7 @@ export default class WindowManager extends EventEmitter {
     }
 
     // 打开子窗口
+    remoteMain.enable(window.webContents)
     window.webContents.on('new-window', (e, url) => {
       e.preventDefault()
       shell.openExternal(url)
